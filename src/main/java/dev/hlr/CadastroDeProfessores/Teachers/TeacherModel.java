@@ -1,6 +1,8 @@
-package dev.hlr.CadastroDeProfessores;
+package dev.hlr.CadastroDeProfessores.Teachers;
+import dev.hlr.CadastroDeProfessores.Department.DepartmentModel;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_registration")
@@ -9,11 +11,20 @@ public class TeacherModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
-    private String department;
+
+    // @ManyToOne, muitos teacher tem apenas uma missao.
+    @ManyToOne
+    @JoinColumn(name = "department_id") // FK
+    private DepartmentModel department;
+
     private LocalDateTime hireDate;
+    private List<DepartmentModel> departments;
 
     public TeacherModel() {
     }
@@ -23,7 +34,6 @@ public class TeacherModel {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.department = department;
         this.hireDate = hireDate;
     }
 
