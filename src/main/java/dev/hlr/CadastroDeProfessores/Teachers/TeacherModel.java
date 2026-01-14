@@ -21,6 +21,7 @@ public class TeacherModel {
 
     private String lastName;
 
+    @Column(unique = true)
     private String email;
 
     // @ManyToOne, muitos teacher tem apenas uma missao.
